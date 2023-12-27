@@ -1,0 +1,265 @@
+<body>
+  <div class="container">
+    <form
+      class="form-horizontal"
+      role="form"
+      (ngSubmit)="doRegister()"
+      #myForm="ngForm"
+    >
+      <h2>Registration</h2>
+      <div class="form-group">
+        <label for="username" class="col-sm-3 control-label">User Name*</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="User Name"
+            class="form-control"
+            [(ngModel)]="dto.username"
+            autofocus
+            required
+            #username="ngModel"
+            (change)="doCheckUsername()"
+          />
+        </div>
+        <div
+          *ngIf="username.pristine == false && username.invalid == true"
+          style="color: red"
+        >
+          <p>username cannot be empty</p>
+        </div>
+        <div *ngIf="isExisting" style="color: red">
+          <p>username already exists! Please select a different username</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">Email* </label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="dto.email"
+            required
+            #email="ngModel"
+          />
+        </div>
+        <div
+          *ngIf="email.pristine == false && email.invalid == true"
+          style="color: red"
+        >
+          <p>email cannot be empty</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">Password*</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            class="form-control"
+            [(ngModel)]="dto.password"
+            (change)="doPasswordCheck()"
+            required
+            #password="ngModel"
+          />
+        </div>
+        <div
+          *ngIf="password.pristine == false && password.invalid == true"
+          style="color: red"
+        >
+          <p>password cannot be empty</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="checkpassword" class="col-sm-3 control-label"
+          >Confirm Password*</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="password"
+            id="checkpassword"
+            name="checkpassword"
+            placeholder="Password"
+            class="form-control"
+            (change)="doPasswordCheck()"
+            [(ngModel)]="checkpassword"
+            required
+            #confirmpassword="ngModel"
+          />
+        </div>
+        <div
+          *ngIf="confirmpassword.pristine == false && !passwordMatch"
+          style="color: red"
+        >
+          <p>passwords do not match! please enter same password</p>
+        </div>
+        <div
+          *ngIf="
+            confirmpassword.pristine == false && confirmpassword.invalid == true
+          "
+          style="color: red"
+        >
+          <p>please confirm password</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone" class="col-sm-3 control-label">Phone number* </label>
+        <div class="col-sm-9">
+          <input
+            type="phoneNumber"
+            id="phone"
+            name="phone"
+            placeholder="Phone number"
+            class="form-control"
+            [(ngModel)]="dto.phone"
+            required
+            #phone="ngModel"
+          />
+          <div
+            *ngIf="phone.pristine == false && phone.invalid == true"
+            style="color: red"
+          >
+            <p>phone number is required</p>
+          </div>
+          <span class="help-block"
+            >Your phone number won't be disclosed anywhere
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="houseAddress" class="col-sm-3 control-label">Address</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            id="houseAddress"
+            name="houseAddress"
+            placeholder="Address"
+            class="form-control"
+            [(ngModel)]="dto.houseAddress"
+            autofocus
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city" class="col-sm-3 control-label">City</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="City"
+            class="form-control"
+            [(ngModel)]="dto.city"
+            autofocus
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country" class="col-sm-3 control-label">Country</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            id="country"
+            name="country"
+            placeholder="Country"
+            class="form-control"
+            [(ngModel)]="dto.country"
+            autofocus
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="select" class="col-sm-3 control-label">Role*</label>
+        <div class="col-sm-9">
+          <select
+            class="form-control"
+            name="role"
+            id="role"
+            [(ngModel)]="role"
+            required
+            #userrole="ngModel"
+          >
+            <option value="--selected--">--selected--</option>
+            <option value="author">Author</option>
+            <option value="customer">User</option>
+          </select>
+        </div>
+        <div *ngIf="userrole.value == '--selected--'" style="color: red">
+          <p>role is required</p>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="role === 'author'">
+        <label for="region" class="col-sm-3 control-label">Region</label>
+        <div class="col-sm-9">
+          <select
+            class="form-control"
+            id="region"
+            name="region"
+            [(ngModel)]="dto.region"
+          >
+            <option>--selected--</option>
+            <option value="asia">Asia</option>
+            <option value="america">America</option>
+            <option value="africa">Africa</option>
+            <option value="europe">Europe</option>
+            <option value="south america">South America</option>
+            <option value="north america">North America</option>
+            <option value="oceania">Oceania</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="role === 'author'">
+        <label for="nativeLanguage" class="col-sm-3 control-label"
+          >Native Language</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            id="nativeLanguage"
+            name="nativeLanguage"
+            placeholder="Language"
+            class="form-control"
+            [(ngModel)]="dto.nativeLanguage"
+            autofocus
+          />
+        </div>
+      </div>
+      <div class="form-group" *ngIf="role === 'customer' || role === 'author'">
+        <label for="fullname" class="col-sm-3 control-label">Full Name</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            id="fullname"
+            name="fullName"
+            placeholder="Full Name"
+            class="form-control"
+            [(ngModel)]="dto.fullName"
+            autofocus
+          />
+        </div>
+      </div>
+      <!-- /.form-group -->
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <span class="help-block">*Required fields</span>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn register btn-block"
+        [disabled]="!myForm.form.valid"
+      >
+        Register
+      </button>
+    </form>
+    <!-- /form -->
+  </div>
+  <!-- ./container -->
+</body>

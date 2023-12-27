@@ -1,0 +1,28 @@
+<div class="cartcontainer">
+  <div class="ordercard">
+    <table>
+      <tr>
+        <th>Book</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let item of itemList">
+        <td>{{ item.bookName }}</td>
+        <td>{{ item.units }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+      <tr>
+        <th colspan="2">Total</th>
+        <td>{{ totalOrderValue }}</td>
+      </tr>
+    </table>
+    <div class="buttoncontainer">
+      <button class="empty" (click)="doEmptyCart(itemList, totalOrderValue)">
+        Empty Cart
+      </button>
+      <button class="order" (click)="doPlaceOrder(itemList, totalOrderValue)">
+        Place Order
+      </button>
+    </div>
+  </div>
+</div>

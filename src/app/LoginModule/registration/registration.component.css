@@ -1,0 +1,45 @@
+form {
+  max-width: 530px;
+  padding: 15px;
+  margin: 0 auto;
+  border-radius: 0.3em;
+  background-color: #00000090;
+  color: #f7f7f7;
+}
+label {
+  width: 400px;
+  text-wrap: nowrap;
+}
+h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: #f7f7f7;
+  margin-top: 5%;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("src\assets\671822c2f63dd5f65d8fd15c9710420b.jpg");
+  background-size: cover;
+  width: 100%;
+}
+input,
+select {
+  background-color: #ffffff80;
+  color: #ffffff;
+}
+input::placeholder {
+  color: #00000090;
+}
+.register {
+  background-color: #2ec7cd;
+  border: 2px solid #2ec7cd;
+}
+.register:disabled {
+  background-color: #858585;
+  border: 2px solid #858585;
+}

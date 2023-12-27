@@ -1,0 +1,35 @@
+<div class="main">
+  <div class="content">
+    <h1>Author Pending</h1>
+    <div *ngIf="author.length === 0">
+      <h4>No Pending Requests</h4>
+    </div>
+    <div class="containauthorcard" *ngFor="let a of author">
+      <div class="authorcard">
+        <div class="inforow" #AuthorId>Author Id {{ a.userCode }}</div>
+        <div class="inforow">Author Name {{ a.username }}</div>
+        <div class="inforow">City : {{ a.city }}</div>
+        <div class="inforow">Country : {{ a.country }}</div>
+        <div class="inforow">Email : {{ a.email }}</div>
+        <div class="inforow">Phone : {{ a.phone }}</div>
+        <div class="inforow">Region : {{ a.region }}</div>
+        <div class="inforow">Native Language : {{ a.nativeLanguage }}</div>
+        <button (click)="doApprove(a.userCode)">Approve</button>
+        <button>Reject</button>
+      </div>
+    </div>
+    <h1>All Authors</h1>
+    <div class="containauthorcard" *ngFor="let a of allauthor">
+      <div class="authorcard">
+        <div class="inforow" #AuthorId>Author Id {{ a.userCode }}</div>
+        <div class="inforow">Author Name {{ a.username }}</div>
+        <div class="inforow">City : {{ a.city }}</div>
+        <div class="inforow">Country : {{ a.country }}</div>
+        <div class="inforow">Email : {{ a.email }}</div>
+        <div class="inforow">Phone : {{ a.phone }}</div>
+        <div class="inforow">Region : {{ a.region }}</div>
+        <div class="inforow">Native Language : {{ a.nativeLanguage }}</div>
+      </div>
+    </div>
+  </div>
+</div>
