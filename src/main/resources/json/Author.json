@@ -1,0 +1,14 @@
+{
+        "userCode":7,
+        "username":"Paul",
+        "password":"author",
+        "userrole":"author",
+        "name":"Paul Berkley",
+        "houseAddress":"altstreet-19",
+        "city":"Delhi",
+        "country":"India",
+        "email":"berkley@gmail",
+        "phone":8526752789,
+        "region":" South Asia",
+        "nativeLanguage":"English"
+}
